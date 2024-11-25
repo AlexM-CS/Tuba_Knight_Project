@@ -58,3 +58,26 @@ Created TubaKnight.py:
     Declared fields: playerName, playerData
     Declared methods: __init__(), getPlayerData, save(), play()
 ===================================================================================================
+11-23-2024
+Began work on Items and Item IDs
+EntityLists.py:
+    Declared EquipmentList
+        Declared methods: __init__(), add()
+Items.py:
+    Declared static fields: ITEM_TAGS
+    Declared methods: addTagByID(), addTagsToItemByID()
+Created Tests.py
+===================================================================================================
+11-24-2024
+Stats.py:
+    Declared TempStats
+        Declared methods: __init__(), buff(), alter(), damageThis(), cast()
+EntityLists.py:
+    EquipmentList
+        Declared methods: setItem(), __repr__()
+
+Items.py:
+    Declared methods: getStatsByID(), __str__(), __repr__()
+Created ItemStats.py:
+    Declared fields: level, degree, health, magicpoints, strength, dexterity, magic, defense, speed, crit
+    Declared methods: __init__(), __repr__(), getExpNeeded(), setStats()

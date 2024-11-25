@@ -65,3 +65,106 @@ class Stats:
         CRT = "0x%04x" % self.critchance
 
         return f"HPS:{HPS},MPS:{MPS},STR:{STR},DEX:{DEX},MGC:{MGC},DFN:{DFN},SPE:{SPE},CRT:{CRT}"
+
+class TempStats(Stats):
+    """
+    Description:
+    The TempStats class is a temporary version of the Stats class,
+    meant to be altered during battles.
+    """
+    def __init__(self, hitpoints : int = 0x000a, magicpoints : int = 0x000a, strength : int = 0x000a, dexterity : int = 0x000a,
+                 magic : int = 0x000a, defense : int = 0x000a, speed : int = 0x000a, critchance : int = 0x000a):
+        """ Initializes this TempStats object. """
+        super().__init__(hitpoints, magicpoints, strength, dexterity, magic, defense, speed, critchance)
+
+    def buff(self, stat : str, amount : int, isMultiplier : bool = False) -> int:
+        """ Buffs the given stat by the given amount. """
+        match (stat):
+            case "HPS":
+                if (isMultiplier):
+                    self.hitpoints *= amount
+                    return self.hitpoints
+                self.hitpoints += amount
+                return self.hitpoints
+            case "MPS":
+                if (isMultiplier):
+                    self.magicpoints *= amount
+                    return self.magicpoints
+                self.magicpoints += amount
+                return self.magicpoints
+            case "STR":
+                if (isMultiplier):
+                    self.strength *= amount
+                    return self.strength
+                self.strength += amount
+                return self.strength
+            case "DEX":
+                if (isMultiplier):
+                    self.dexterity *= amount
+                    return self.dexterity
+                self.dexterity += amount
+                return self.dexterity
+            case "MGC":
+                if (isMultiplier):
+                    self.magic *= amount
+                    return self.magic
+                self.magic += amount
+                return self.magic
+            case "DFN":
+                if (isMultiplier):
+                    self.defense *= amount
+                    return self.defense
+                self.defense += amount
+                return self.defense
+            case "SPE":
+                if (isMultiplier):
+                    self.speed *= amount
+                    return self.speed
+                self.speed += amount
+                return self.speed
+            case "CRT":
+                if (isMultiplier):
+                    self.critchance *= amount
+                    return self.critchance
+                self.critchance += amount
+                return self.critchance
+            case _:
+                raise ValueError(f"Invalid stat: {stat}")
+
+    def alter(self, stat : str, amount : int) -> None:
+        """ Sets the given stat to the given amount. """
+        match (stat):
+            case "HPS":
+                self.hitpoints = amount
+            case "MPS":
+                self.magicpoints = amount
+            case "STR":
+                self.strength += amount
+            case "DEX":
+                self.dexterity += amount
+            case "MGC":
+                self.magic = amount
+            case "DFN":
+                self.defense = amount
+            case "SPE":
+                self.speed = amount
+            case "CRT":
+                self.critchance = amount
+            case _:
+                raise ValueError(f"Invalid stat: {stat}")
+
+    def damageThis(self, amount : int) -> bool:
+        """ Damages the given amount. """
+        isDead = False
+        self.hitpoints -= amount
+        isDead = self.hitpoints <= 0
+        return isDead
+
+    def cast(self, amount : int) -> bool:
+        """ Casts a skill using magicpoints. Return value indicates if the cast is successful. """
+        allowed = True
+        if (self.magicpoints - amount < 0):
+            allowed = False
+        else:
+            self.magicpoints -= amount
+        return allowed

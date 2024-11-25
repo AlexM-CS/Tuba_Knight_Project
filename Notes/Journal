@@ -75,3 +75,17 @@ terminal text if I can help it, and because I plan to make the UI at least somew
 it'll help me enjoy more of the project down the road by not constantly being in front of such
 bland screens.
 ===================================================================================================
+11-23-2024
+Did not work much on the project today, since I was busy flying home for Thanksgiving. Will
+make progress tomorrow.
+===================================================================================================
+11-24-2024
+Today I was able to make good progress on what I wanted to get accomplished yesterday. Items
+and ItemLists now have functioning __repr__(), allowing for the saving method of TubaKnight.py
+to be fully functional. I haven't actually finished its implementation, but I'll be getting to
+that soon. For now, I want to make sure that Items are behaving how they should and I have all
+the __repr__ methods for everything that needs them. After that gets finished, I'll complete
+the saving method of TubaKnight.py, and then move on to Areas. I want to create a special test
+Area and get the actual gameplay loop working inside of it, which will probably one o the biggest
+parts of this project.
+===================================================================================================

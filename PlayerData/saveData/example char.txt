@@ -1,8 +1,15 @@
 PlayerData_playerName
 Stats_LVL:0x0000,EXP:0x0000,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-ItemIDs_HELD:0x0000,ITM1:0x0000,ITM2:0x0000,ITM3:0x0000,ITM4:0x0000,ITM5:0x0000
+Items_
+HELD_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
+ITM1_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
+ITM2_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
+ITM3_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
+ITM4_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
+ITM5_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
 RegionID_0x00
-InvItem_0x0000
+InvItems_
+ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
 
 This file is meant to serve as an example for how playerData objects are formatted.
 playerData objects are updated accordingly during gameplay. Text files are used to
@@ -36,12 +43,17 @@ Item IDs are written with 4-digit hexadecimal values. The HELD item indicates wh
 the player currently has equipped, while the ITM1 - ITM5 fields indicate which passive items
 the player currently has equipped.
 
-Line 4 will always be written in the format given above, beginning with "RegionID_".
+Line 4 will always be written "ItemStats_". This indicates that the coming lines are items
+currently equipped by the player.
+
+Lines 5-10 will represent Stats for each of the corresponding items that the player is holding.
+
+Line 5 will always be written in the format given above, beginning with "RegionID_".
 This ID will tell the game what Area object to create, and subsequently, to place the
 player in. These IDs are always a 2-digit hexadecimal value.
 
 Any other included lines are Item IDs that specify items in the player's inventory. They
-will be formatted the same way as line 5 above.
+will be formatted the same way as lines 5 above.
 
 Other relevant data is gathered while the game is played. For example, quest progress, either
 for the main story or a side quest, is only updated when relevant. If the player does not involve

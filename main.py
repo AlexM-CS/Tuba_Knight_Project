@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-22-2024
+# Last updated: 11-23-2024
 
 # IO packages:
 
@@ -10,13 +10,10 @@
 # External packages:
 
 # Internal packages:
-from TubaKnight import *
+from Tests import *
 
 def main():
-    name = input("What is your name?: ")
-    tk = TubaKnight(name)
-    tk.getPlayerData()
-    tk.save()
+    test2_ItemList()
 
 if __name__ == "__main__":
     main()

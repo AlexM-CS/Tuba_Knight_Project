@@ -27,13 +27,7 @@ class Entity:
     ID = None
 
     def __init__(self, ID : int):
-        """
-        Initializes this entity
-
-        Args:
-            str name - the name for this entity
-            int ID - the ID for this entity
-        """
+        """ Initializes this entity. """
         self.ID = ID
         self.name = f"Entity {self.ID}"
 
