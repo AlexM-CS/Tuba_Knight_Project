@@ -1,15 +1,15 @@
 PlayerData_playerName
 Stats_LVL:0x0000,EXP:0x0000,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-Items_
-HELD_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-ITM1_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-ITM2_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-ITM3_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-ITM4_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-ITM5_ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
 RegionID_0x00
-InvItems_
-ID:0x0000,Stats_LVL:0x0000,DGR:0x0,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
+Items_
+HELD_ID_:0x0000,LVL:0x0000,DGR:0x0
+ITM1_ID_:0x0000,LVL:0x0000,DGR:0x0
+ITM2_ID_:0x0000,LVL:0x0000,DGR:0x0
+ITM3_ID_:0x0000,LVL:0x0000,DGR:0x0
+ITM4_ID_:0x0000,LVL:0x0000,DGR:0x0
+ITM5_ID_:0x0000,LVL:0x0000,DGR:0x0
+ITMi_ID_:0x0000,LVL:0x0000,DGR:0x0
+...
 
 This file is meant to serve as an example for how playerData objects are formatted.
 playerData objects are updated accordingly during gameplay. Text files are used to
@@ -37,23 +37,16 @@ DFN: Defense
 SPE: Speed
 CRT: Crit Chance
 
-Line 3 will always be written in the format given above, beginning with "ItemIDs_".
-These IDs will tell the game which items the player currently has equipped upon being spawned.
-Item IDs are written with 4-digit hexadecimal values. The HELD item indicates which weapon
-the player currently has equipped, while the ITM1 - ITM5 fields indicate which passive items
-the player currently has equipped.
-
-Line 4 will always be written "ItemStats_". This indicates that the coming lines are items
-currently equipped by the player.
-
-Lines 5-10 will represent Stats for each of the corresponding items that the player is holding.
-
-Line 5 will always be written in the format given above, beginning with "RegionID_".
+Line 3 will always be written in the format given above, beginning with "RegionID_".
 This ID will tell the game what Area object to create, and subsequently, to place the
 player in. These IDs are always a 2-digit hexadecimal value.
 
-Any other included lines are Item IDs that specify items in the player's inventory. They
-will be formatted the same way as lines 5 above.
+Line 4 indicates that all other lines are items that the program must read in.
+
+The format for reading in items is given above. "HELD_" and "ITM1-5_" indicate that the item
+in question is equipped. In the case of "HELD_", that item is the player's weapon, and in
+the case of "ITM1-5_", the given item is equipped in the given item slot. All other items,
+labeled "ITMi_", are contained within the player's inventory.
 
 Other relevant data is gathered while the game is played. For example, quest progress, either
 for the main story or a side quest, is only updated when relevant. If the player does not involve

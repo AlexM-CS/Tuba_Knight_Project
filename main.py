@@ -13,7 +13,7 @@
 from Tests import *
 
 def main():
-    test2_ItemList()
+    test1_saving()
 
 if __name__ == "__main__":
     main()

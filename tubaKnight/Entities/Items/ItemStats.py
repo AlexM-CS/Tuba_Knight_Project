@@ -58,7 +58,7 @@ class ItemStats:
         SPE = "0x%04x" % self.speed
         CRT = "0x%04x" % self.crit
 
-        return f"Stats_LVL:{LVL},DGR:{DGR},HPS:{HPS},MPS:{MPS},STR:{STR},DEX:{DEX},MGC:{MGC},DFN:{DFN},SPE:{SPE},CRT:{CRT}"
+        return f"LVL:{LVL},DGR:{DGR},HPS:{HPS},MPS:{MPS},STR:{STR},DEX:{DEX},MGC:{MGC},DFN:{DFN},SPE:{SPE},CRT:{CRT}"
 
     def getExpNeeded(self):
         """ Returns the Experience needed to level up this item. Returns None if item level greater than 99. """

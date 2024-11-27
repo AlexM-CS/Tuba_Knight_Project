@@ -71,13 +71,13 @@ def addTagsToItemByID(ID : int) -> list[str]:
             tags.append(addTagByID(3))
     return tags
 
-def getStatsByID(ID : int, degree : int) -> ItemStats:
+def getStatsByID(ID : int, level : int, degree : int) -> ItemStats:
     """ Gets this item's stats based on its ID. """
     if (ID >= len(ITEM_NAMES)):
         raise IndexError("Item ID exceeds maximum.")
     elif (ID < 0):
         raise IndexError("Item IDs may not be negative.")
-    stats = ItemStats(1, degree, 0, 0, 0, 0, 0, 0, 0, 0)
+    stats = ItemStats(level, degree, 0, 0, 0, 0, 0, 0, 0, 0)
     match (ID):
         case 0, 1:
             pass
@@ -96,8 +96,8 @@ class Item(Entity):
     Action 6 - Items can perform Skills
 
     Fields:
-    int ID - the ID of this item
-    str name - the name of the item
+    int level - the level of this item
+    int degree - the degree of this item
     int state - the state of this item
     list[str] tags - tags belonging to this item
     ItemStats stats - the stats of this item
@@ -108,14 +108,28 @@ class Item(Entity):
     tags = None
     stats = None
 
-    def __init__(self, ID : int, degree : int = ITEM_DEGREES["Pianissimo"], state : int = idle):
+    def __init__(self, ID : int, level : int = 1, degree : int = ITEM_DEGREES["Pianissimo"], state : int = idle):
         """ Instantiates this Item. """
-        super().__init__(ID)
-        self.name = getName(ID)
-        self.degree = degree
-        self.state = state
-        self.tags = addTagsToItemByID(ID)
-        self.stats = getStatsByID(ID, degree)
+        if (ID == 0x0000 or ID == 0x0001):
+            super().__init__(ID)
+            if (ID == 0x0000):
+                self.name = "No Item"
+                self.tags = ["Dummy"]
+            else:
+                self.name = "Fists"
+                self.tags = ["Weapon", "Percussive"]
+            self.level = 1
+            self.degree = 2
+            self.state = 0
+            self.stats = ItemStats(1, 2, 0, 0, 0, 0, 0, 0, 0, 0)
+        else:
+            super().__init__(ID)
+            self.name = getName(ID)
+            self.level = level
+            self.degree = degree
+            self.state = state
+            self.tags = addTagsToItemByID(ID)
+            self.stats = getStatsByID(ID, level, degree)
 
     def act(self):
         """
@@ -145,7 +159,7 @@ class Item(Entity):
         Can be used to re-create this object.
         """
         ID = "0x%04x" % self.ID
-        return f"ID:{ID},Stats_{self.stats.__repr__()}"
+        return f"ID_:{ID},{self.stats.__repr__()}"
 
 def equip(isWeapon : bool):
     pass

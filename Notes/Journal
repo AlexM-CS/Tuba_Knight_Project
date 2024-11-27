@@ -89,3 +89,34 @@ the saving method of TubaKnight.py, and then move on to Areas. I want to create 
 Area and get the actual gameplay loop working inside of it, which will probably one o the biggest
 parts of this project.
 ===================================================================================================
+11-26-2024
+Today I fully finished the saving functionality, apart from the Area writing, which I will of
+course handle whenever I write the code to create Areas. This will probably be my next course
+of action. After that, I'd like to start coding the act() methods for various entities like
+enemies and items. That said, to test these things, I'll also need to get the battle system up.
+If only there wasn't so much to do.
+
+I need to plan out the different actions the player can take from the main menu so that I can get
+started on actually making the game interactable.
+Here are some starter things I can think of-
+
+-Continue Story
+-Wander
+-Items (interacting with your equipped items and inventory items)
+-Settings
+    -Albums (Compilations of discovered gameplay elements)
+        -Bestiary         (NPCs)
+        -Item Manual      (Items)
+        -Travel Brochures (Regions)
+    -How to Play
+    -Credits
+-Save
+-Quit
+
+I'll build upon this whenever I actually start work on it.
+
+I'm currently not able to work on this every day, since it's Thanksgiving break right now and I
+can't dedicate a ton of time to sitting alone in my room coding. Even then, I have assignments
+and the Crossword Project to work on when I do code, so this is more of a "when-I-have-time-to"
+thing right now. Hopefully, come the new year, I'll be able to spend more time on this.
+===================================================================================================

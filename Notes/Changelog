@@ -1,6 +1,5 @@
 Created: 11-20-2024
 Last updated: 11-21-2024
-
 ===================================================================================================
 11-20-2024
 Project started
@@ -75,9 +74,28 @@ Stats.py:
 EntityLists.py:
     EquipmentList
         Declared methods: setItem(), __repr__()
-
 Items.py:
     Declared methods: getStatsByID(), __str__(), __repr__()
 Created ItemStats.py:
-    Declared fields: level, degree, health, magicpoints, strength, dexterity, magic, defense, speed, crit
+    Declared fields: level, degree, health, magicpoints, strength, dexterity, magic, defense,
+     speed, crit
     Declared methods: __init__(), __repr__(), getExpNeeded(), setStats()
+===================================================================================================
+11-26-2024
+example char.txt:
+    Finalized saved data format
+PlayerData.py:
+    Declared static fields: defaultItems
+    Declared fields: regionID
+    Updates to __repr__()
+EntityLists.py:
+    Removed classes: EquipmentList, Inventory
+Items.py:
+    Declared fields: level
+    Updates to __init__()- separate initialization for item IDs 0 and 1
+ItemStats.py:
+    Updates to __repr__()
+TubaKnight.py:
+    Updates to getPlayerData() and save()- appropriate file reading/saving in line with new saved
+     data format
+===================================================================================================

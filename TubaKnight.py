@@ -46,52 +46,66 @@ class TubaKnight:
         """
         try:
             f = open(f".\\PlayerData\\saveData\\{self.playerName}.txt", "r")
-            line = f.readline()
 
-            # Line 2 format:
-            # Stats_LVL:0x0000,EXP:0x0000,HPS:0x0000,MPS:0x0000,STR:0x0000,DEX:0x0000,MGC:0x0000,DFN:0x0000,SPE:0x0000,CRT:0x0000
-            line = f.readline()[6:].strip().split(",")
-            for i in range(0, len(line)):
-                line[i] = line[i][4:]
-            level = int(line[0], 16)
-            experience = int(line[1], 16)
-            stats = Stats(int(line[2], 16), int(line[3], 16), int(line[4], 16), int(line[5], 16), int(line[6], 16), int(line[7], 16),
-                          int(line[8], 16), int(line[9], 16))
+            # Skip line 1. It is meant for reading, not for data.
+            f.readline()
 
-            # Line 3 format:
-            # ItemIDs_HELD:0x0000,ITM1:0x0000,ITM2:0x0000,ITM3:0x0000,ITM4:0x0000,ITM5:0x0000
-            line = f.readline()[8:]
-            line = line.strip().split(",")
+            # Line 2 describes the player's stats, so we need to read it and parse the stats accordingly.
+            # Slice from 6 to the end to get rid of the "Stats_" at the beginning.
+            line = f.readline()[6:]
+            line = line.split(",")
+            stats = list()
             for i in range(0, len(line)):
-                print(line[i])
-                line[i] = line[i][5:]
-            weapon = Item(int(line[0], 16))
-            print(Items.getName(weapon.ID))
-            items = [Item(int(line[1], 16)), Item(int(line[2], 16)), Item(int(line[3], 16)), Item(int(line[4], 16)), Item(int(line[5], 16))]
-            self.playerData = PlayerData(f"{self.playerName}", level, experience, stats, weapon, items)
-            print(self.playerData.__repr__())
+                # Slice from 4 to the end to get rid of the stat's name,
+                # as it is meant for reading.
+                stats.append(int(line[i][4:], 16))
+
+            playerLevel = stats[0]
+            playerExp = stats[1]
+            playerStats = Stats(stats[2], stats[3], stats[4], stats[5], stats[6], stats[7], stats[8], stats[9])
+
+            # Line 3 describes the Area to be loaded when starting.
+            # Slice from 9 to the end to get rid of the "RegionID_" at the beginning.
+            line = f.readline()[9:]
+            playerRegion = int(line, 16)
+
+            # Skip line 4. It is meant for reading, not for data.
+            f.readline()
+
+            # Lines 5-40 are meant for reading in items.
+            playerItems = {}
+
+            for i in range(0, 36):
+                # Slice from 5 to the end to get rid of the "HELD_" or "ITMX_" tags at the beginning.
+                line = f.readline()[5:]
+                line = line.split(",")
+                playerItems[i] = Item(int(line[0][4:], 16), int(line[1][4:], 16), int(line[2][4:], 16))
+
+            self.playerData = PlayerData(self.playerName, playerLevel, playerExp, playerRegion, playerStats, playerItems)
             f.close()
 
         except FileNotFoundError:
             Text(f"Would you like to create a new character named {self.playerName}?").display()
-            answer = nextStr(f"[Y]/[N] : ")
-            while (answer.lower() != "y" and answer.lower() != "n"):
-                answer = nextStr(f"[Y]/[N] : ")
-            if (answer == "Y"):
+            answer = nextStr(f"[Y]/[N]: ").lower()
+            while (answer!= "y" and answer != "n"):
+                answer = nextStr(f"[Y]/[N] : ").lower()
+            if (answer == "y"):
                 self.playerData = PlayerData(f"{self.playerName}")
             else:
                 Text(f"Returning to main menu...").display()
                 quit()
+
         except ValueError:
             print(f"A ValueError occurred")
+
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
 
     def save(self) -> bool:
         try:
             f = open(f".\\PlayerData\\saveData\\{self.playerName}.txt", "w")
-            f.write(f"{self.playerData.__repr__()}\n"
-                    f"ItemIDs_HELD:0x0001,ITM1:0x0000,ITM2:0x0000,ITM3:0x0000,ITM4:0x0000,ITM5:0x0000\n"
-                    f"RegionID_0x00\n"
-                    f"InvItem_0x0000")
+            f.write(f"{self.playerData.__repr__()}")
+            f.close()
             print(f"Saved successfully.")
             return True
         except:
