@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-22-2024
+# Last updated: 11-27-2024
 
 # IO packages:
 
@@ -11,20 +11,14 @@
 
 # Internal packages:
 from ..Entity import Entity
+from ..Entity import IDLE, BATTLING, DEAD
 from .Stats import Stats
 from ...Regions.Special.GlobalLootTables import *
 
 """
 Static Fields:
-idle = 0 - indicates that this enemy is idle
-battling = 1 - indicates that this enemy is battling
-dead = 2 - indicates that this enemy is dead
 list[str] ENEMY_NAMES - list containing the names of enemies
 """
-
-idle = 0
-battling = 1
-dead = 2
 
 ENEMY_NAMES = ["Dummy"]
 
@@ -55,16 +49,14 @@ class Enemy(Entity):
     dict lootTable - the items this enemy is able to drop
     """
 
-    state = None
     level = None
     stats = None
     lootTable = None
 
-    def __init__(self, ID: int, state : int = idle, level : int = 1, stats : Stats = None, lootTable : dict = globalTable):
+    def __init__(self, ID: int, level : int = 1, stats : Stats = None, lootTable : dict = globalTable):
         """ Instantiates this enemy. """
         super().__init__(ID)
         self.name = getName(ID)
-        self.state = state
         self.level = level
         self.stats = stats
         self.lootTable = lootTable
@@ -76,15 +68,18 @@ class Enemy(Entity):
         Action 2 can be accessed while the enemy is battling.
         Actions 3 and 4 can be accessed while the enemy is dead.
         """
-        if (self.state == idle):
+        if (self.state == IDLE):
             output = engage()
-        elif (self.state == battling):
+        elif (self.state == BATTLING):
             output = attack(self.stats)
-        elif (self.state == dead):
+        elif (self.state == DEAD):
             output = (rewardExp(self.name, self.level), rewardItems(self.name, self.level, self.lootTable))
         else:
             raise RuntimeError("This enemy's state is illegal.")
         return output
+
+    def setState(self, state : int):
+        pass
 
 def engage():
     """ Starts a battle with the player. """

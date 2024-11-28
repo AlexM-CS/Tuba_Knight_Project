@@ -120,3 +120,9 @@ can't dedicate a ton of time to sitting alone in my room coding. Even then, I ha
 and the Crossword Project to work on when I do code, so this is more of a "when-I-have-time-to"
 thing right now. Hopefully, come the new year, I'll be able to spend more time on this.
 ===================================================================================================
+11-27-2024
+Started work on some of the simpler steps towards my end goal, which is getting Areas
+implemented. As I started to work, I realized all I had right now was PlayerData, not an actual
+player. So I started there, and edited some past files to account for the new standards I wanted
+for all entities, not just players.
+===================================================================================================

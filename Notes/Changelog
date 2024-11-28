@@ -99,3 +99,30 @@ TubaKnight.py:
     Updates to getPlayerData() and save()- appropriate file reading/saving in line with new saved
      data format
 ===================================================================================================
+11-27-2024
+Created Area.py:
+    Declared static fields: PATHS
+    Declared Area:
+        Declared fields: ID, name, path
+        Declared methods: __init__(), __str__(), __repr__(), load(), save()
+Config.py:
+    Declared static fields: show_IDs
+    Added comments
+Enemies.py:
+    Declared methods: setState()
+    Refactored possible states for all Entities
+Entity.py:
+    Declared static fields: IDLE, BATTLING, DEAD, MENU, CUTSCENE
+    Declared methods: setState()
+    Refactored possible states for all Entities
+    Changed act() and setState() to be abstract
+Items.py:
+    Declared methods: setState()
+    Refactored possible states for all Entities
+Created PlayerCharacter.py:
+    Declared fields: myNick, myData
+    Declared methods: __init__(), act(), setState()
+Created Chores.txt:
+    A list of chores for me to review at the end of each day of work.
+    This is to remind me of what I need to finish up before I log off for the day.
+===================================================================================================

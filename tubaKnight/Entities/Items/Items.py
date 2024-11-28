@@ -1,6 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-22-2024
-from argparse import ArgumentError
+# Last updated: 11-27-2024
 
 # IO packages:
 
@@ -12,19 +11,15 @@ from argparse import ArgumentError
 
 # Internal packages:
 from ..Entity import Entity
+from ..Entity import IDLE, BATTLING
 from .ItemStats import *
 
 """
 Static Fields:
-idle = 0 - indicates that this item is idle
-battling = 1 - indicates that this item is battling
 list[str] ITEM_NAMES - list containing the names of items
 list[str] ITEM_TAGS - list containing potential tags for items
 dict ITEM_DEGREES - a dictionary of item degrees. Higher item degree = more damage
 """
-
-idle = 0
-battling = 1
 
 ITEM_NAMES = ["No Item", "Fists"]
 
@@ -137,17 +132,20 @@ class Item(Entity):
         Actions 1, 2, 3, and 4 can be accessed while the player is not in battle.
         Actions 5 and 6 can be accessed while the player is in battle.
         """
-        if (self.state == idle):
+        if (self.state == IDLE):
             equip(self.tags.__contains__("Weapon"))
             putAway()
             upgrade()
             fuseWith()
-        elif (self.state == battling):
+        elif (self.state == BATTLING):
             attack()
             performSkill()
         else:
             raise RuntimeError("This item's state is illegal.")
         return
+
+    def setState(self, state : int):
+        pass
 
     def __str__(self):
         """ Returns this item's name. """
