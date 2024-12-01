@@ -12,6 +12,7 @@
 # Internal packages:
 from ..Entity import IDLE, BATTLING, DEAD, MENU, CUTSCENE
 from Tuba_Knight_Project.TubaKnight import *
+from Tuba_Knight_Project.tubaKnight.Regions.Area import Area
 
 class PlayerCharacter(Entity):
     """
@@ -64,3 +65,31 @@ class PlayerCharacter(Entity):
 
     def setState(self, state : int):
         pass
+
+def menuActions(self):
+    """
+    From the menu, the following options can be chosen:
+    Actions 2, 3, 5, 6, and 7
+    """
+    pass
+
+def viewItems(self):
+    """
+    From the item menu, the following options can be chosen:
+    Action 4
+    """
+    pass
+
+def interact(self, other : Entity):
+    """ Controls interactions between the player and another Entity. """
+    pass
+
+def attack(self):
+    """ Attacks the given entitty """
+    pass
+
+def changeRegion(self, newArea : Area):
+    pass
+
+def loadRegion(self):
+    pass
