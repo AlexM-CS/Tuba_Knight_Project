@@ -64,10 +64,6 @@ class Entity:
         """
         raise NotImplementedError("This entity does not implement act()")
 
-    @abstractmethod
     def setState(self, state : int):
-        """
-        Sets this entity's state.
-        To be overridden by subclasses.
-        """
-        raise NotImplementedError("This entity does not implement setState()")
+        """ Sets this entity's state. """
+        self.state = state

@@ -63,9 +63,6 @@ class PlayerCharacter(Entity):
         """
         pass
 
-    def setState(self, state : int):
-        pass
-
 def menuActions(self):
     """
     From the menu, the following options can be chosen:
@@ -85,7 +82,7 @@ def interact(self, other : Entity):
     pass
 
 def attack(self):
-    """ Attacks the given entitty """
+    """ Attacks the given entity. """
     pass
 
 def changeRegion(self, newArea : Area):

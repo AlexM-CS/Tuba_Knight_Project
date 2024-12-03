@@ -126,3 +126,21 @@ implemented. As I started to work, I realized all I had right now was PlayerData
 player. So I started there, and edited some past files to account for the new standards I wanted
 for all entities, not just players.
 ===================================================================================================
+12-2-2024
+Today I got a ton of work done. Again, working towards the goal of being able to actually playtest,
+I kept working on PlayerCharacters. As of now, this involves defining all their actions, the
+most important of which is interacting with the main menu. However, as I understood this would
+be a massive undertaking, likely involving multiple days of work, I decided to simply declare the
+Menu class for now and wait until later to fully implement it.
+
+That said, I did a good job today on a different action- attacking. While the actual player's
+"attack()" action is not implemented yet, I dedicated today to researching and writing a damage
+formula. As noted in the new Equation.py file, the damage formula is adapted for my uses from
+the damage formula used in many different Pokemon games. Obviously I threw out the things that
+didn't apply to my own purposes, such as the STAB (Same-Type Attack Bonus) multiplier and
+Type Advantages, and took the liberty of adding things that I'll be using in this game, such
+as factoring in the defender's level in damage calculations.
+
+The damage formula used by Pokemon can be found on the website given in the Sources_and_Research
+file.
+===================================================================================================

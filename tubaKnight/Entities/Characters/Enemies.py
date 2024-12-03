@@ -12,6 +12,7 @@
 # Internal packages:
 from ..Entity import Entity
 from ..Entity import IDLE, BATTLING, DEAD
+from ..Items.Items import Item
 from .Stats import Stats
 from ...Regions.Special.GlobalLootTables import *
 
@@ -46,19 +47,22 @@ class Enemy(Entity):
     int state - the state of this enemy
     int level - the level of this enemy
     Stats stats - the stats of this enemy
+    Item weapon - the weapon held by this enemy
     dict lootTable - the items this enemy is able to drop
     """
 
     level = None
     stats = None
+    weapon = None
     lootTable = None
 
-    def __init__(self, ID: int, level : int = 1, stats : Stats = None, lootTable : dict = globalTable):
+    def __init__(self, ID: int, level : int = 1, stats : Stats = None, weapon : Item = Item(0x0001), lootTable : dict = globalTable):
         """ Instantiates this enemy. """
         super().__init__(ID)
         self.name = getName(ID)
         self.level = level
         self.stats = stats
+        self.weapon = weapon
         self.lootTable = lootTable
 
     def act(self):

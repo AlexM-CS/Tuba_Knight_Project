@@ -22,6 +22,9 @@ Sources_and_Research file created
 Added Enemy 0 to the Notes file
 Added Item 0 to the Notes file
 Added Item 1 to the Notes file
+
+(From here onwards, I standardized my format for documenting changes)
+
 Created PlayerData.py:
     Declared fields: name, level, experience, stats, weapon, items, inventory
     Declared methods: __init__(), __repr__()
@@ -43,7 +46,8 @@ Created Enemies.py
     Declared fields: state, level, stats, lootTable
     Declared methods:
 Created Stats.py:
-    Declared fields: hitpoints, magicpoints, strength, dexterity, magic, defense, speed, critchance
+    Declared fields: hitpoints, magicpoints, strength, dexterity, magic, defense, speed,
+     critchance
     Declared methods: __init__(), __repr__()
 Created Items.py:
     Declared static fields: ITEM_NAMES, ITEM_DEGREES
@@ -58,7 +62,6 @@ Created TubaKnight.py:
     Declared methods: __init__(), getPlayerData, save(), play()
 ===================================================================================================
 11-23-2024
-Began work on Items and Item IDs
 EntityLists.py:
     Declared EquipmentList
         Declared methods: __init__(), add()
@@ -125,4 +128,21 @@ Created PlayerCharacter.py:
 Created Chores.txt:
     A list of chores for me to review at the end of each day of work.
     This is to remind me of what I need to finish up before I log off for the day.
+===================================================================================================
+12-2-2024
+Created Equations.py:
+    Declared methods: attack()
+Created Menu.py:
+    Declared Menu:
+        Declared fields: player
+        Declared methods: __init__()
+Sources_and_Research:
+    Added link to the Pokemon damage formula
+Enemies.py:
+    Declared fields: weapon
+PlayerCharacter.py:
+    Removed methods: setState()
+Entity.py:
+    setState() is no longer abstract. Because Entity's subclasses can detect if their state is
+     illegal, there is no need to have class-specific implementations of setState
 ===================================================================================================
