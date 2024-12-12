@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-23-2024
+# Last updated: 12-11-2024
 
 # IO packages:
 
@@ -13,7 +13,7 @@
 from Tests import *
 
 def main():
-    test1_saving()
+    test3_Menus()
 
 if __name__ == "__main__":
     main()

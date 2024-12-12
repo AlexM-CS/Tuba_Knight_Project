@@ -1,5 +1,9 @@
 # Created: 11-21-2024
-# Last updated: 11-21-2024
+# Last updated: 12-11-2024
+
+# IO packages:
+
+# Graphics packages:
 
 # Built-in packages:
 
@@ -11,8 +15,13 @@ from . import Window
 
 # This file keeps track of various inputs the user can perform while playing.
 
-# Loops until an integer is input, then returns the parsed integer
 def nextInt(text : str = "default", pre : int = None):
+    """
+    Loops until an integer is input, then returns the parsed integer.
+    @param text: the Text to display
+    @param pre: pre-determined choice
+    @return: the parsed integer
+    """
     while True:
         try:
             if (pre is None):
@@ -25,8 +34,13 @@ def nextInt(text : str = "default", pre : int = None):
         except ValueError:
             Window.clear()
 
-# Returns a parsed string
 def nextStr(text : str = "default", pre : str = None):
+    """
+    Returns a parsed string
+    @param text: the Text to display
+    @param pre: pre-determined choice
+    @return: the parsed string
+    """
     if (pre is None):
         string = input(text + "\n")
     else:
@@ -34,11 +48,11 @@ def nextStr(text : str = "default", pre : str = None):
     Window.clear()
     return string
 
-# Allows the user to enter a string that gets masked
 def password(ask : str):
+    """ Allows the user to enter a string that gets masked. """
     return maskpass.askpass(ask, mask="*")
 
-# Waits until enter is pressed by the user
 def enter_to_continue():
+    """ Waits until enter is pressed by the user. """
     input("Press Enter to continue...")
     Window.clear()

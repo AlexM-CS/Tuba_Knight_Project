@@ -146,3 +146,36 @@ Entity.py:
     setState() is no longer abstract. Because Entity's subclasses can detect if their state is
      illegal, there is no need to have class-specific implementations of setState
 ===================================================================================================
+12-11-2024
+Entire Project:
+    Refactored imports to work when running main from the terminal
+Style.py:
+    Edited file and class description
+Text.py:
+    Added the ability for text to "sleep" (delay)
+Inputs.py:
+    Added method descriptions
+Menu.py:
+    Moved from Entities to Tuba_Knight_Project
+    Declared fields: options, default, game, saveFromMenu, saveFromGame
+    Declared methods: __repr__(), select(), setMenu()
+example char.txt:
+    New format
+PlayerData.py:
+    Declared fields: nick
+    Declared methods: levelUp(), getStatUps()
+EntityLists.py:
+    Removed ItemList class
+PlayerCharacter.py:
+    Implemented getExpNeeded and levelUp
+Stats.py:
+    Declared methods: __str__()
+Tests.py:
+    Removed test2_ItemList() method
+    Declared methods: test3_Menus()
+TubaKnight.py:
+    Added processing of nicknames
+    Added a return type of bool to getPlayerData
+    Added method description to save()
+    Renamed play() to start()
+    Implemented start()

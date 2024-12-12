@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-22-2024
+# Last updated: 12-11-2024
 
 # IO packages:
 
@@ -10,7 +10,6 @@
 # External packages:
 
 # Internal packages:
-
 
 class Stats:
     """
@@ -50,7 +49,21 @@ class Stats:
         self.speed = speed
         self.critchance = critchance
 
-    def __repr__(self):
+    def __str__(self) -> str:
+        """
+        String representation of the Stats object.
+        Used during View Character... in GameMenu.
+        """
+        return (f"   Health: {self.hitpoints}\n"
+                f"   MP: {self.magicpoints}\n"
+                f"   Strength: {self.strength}\n"
+                f"   Dexterity: {self.dexterity}\n"
+                f"   Magic: {self.magic}\n"
+                f"   Defense: {self.defense}\n"
+                f"   Speed: {self.speed}\n"
+                f"   Crit Chance: {self.critchance}\n")
+
+    def __repr__(self) -> str:
         """
         String representation of the Stats object.
         Can be used to re-create the object.

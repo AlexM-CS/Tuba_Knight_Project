@@ -1,14 +1,14 @@
 # Created: 11-21-2024
-# Last updated: 11-21-2024
+# Last updated: 12-11-2024
 
 # IO packages:
-from Tuba_Knight_Project.IO.Inputs import enter_to_continue
+from IO.Inputs import enter_to_continue
 
 # Graphics packages:
 from .Style import Style
 
 # Built-in packages:
-from time import time_ns, time
+import time
 
 # External packages:
 from rich.console import Console
@@ -35,17 +35,20 @@ class Text:
         self.style = style
         self.speed = speed
 
-    def display(self, enter_prompt : bool = False):
+    def display(self, enter_prompt : bool = False, sleep : int = 0):
         """ Displays this Text according to the contents and style. """
         if (self.speed > 0):
-            startTime = time()
+            startTime = time.time()
             i = 0
             while (i < len(self.contents)):
-                if ((time_ns() - startTime) > self.speed):
+                if ((time.time_ns() - startTime) > self.speed):
                     Console().print(f"{self.style}{self.contents[i]}", end = "")
                     i += 1
         else:
             Console().print(f"{self.style}{self.contents}")
+
+        if (sleep > 0):
+            time.sleep(sleep)
 
         if (enter_prompt):
             enter_to_continue()

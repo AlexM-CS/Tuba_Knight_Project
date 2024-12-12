@@ -1,5 +1,5 @@
 # Created: 11-21-2024
-# Last updated: 11-21-2024
+# Last updated: 12-11-2024
 
 # Built-in packages:
 
@@ -7,26 +7,28 @@
 
 # Internal packages:
 
-# The Style class affects how something gets displayed.
 class Style:
+    """
+    Description:
+    The Style class affects how something gets displayed.
 
-    # str - the color of the background
+    Fields:
+    str bg_color - the color of the background
+    str color - the color of the text
+    list[str] styles - styles for this text (italics, bold, etc.)
+    """
     bg_color = None
-
-    # str - the color of the text
     color = None
-
-    # list[str] - styles for this text
     styles = None
 
-    # Initializes the Style object with the given attributes
     def __init__(self, bg_color = "black", color = "white", styles = []):
+        """ Initializes this Style object with the given attributes. """
         self.bg_color = bg_color
         self.color = color
         self.styles = styles
 
-    # Returns a stylized version of the string
     def __repr__(self):
+        """ Returns a stylized version of the string when used with Text. """
         thisStyle = ""
         for style in self.styles:
             thisStyle += f"{style}"

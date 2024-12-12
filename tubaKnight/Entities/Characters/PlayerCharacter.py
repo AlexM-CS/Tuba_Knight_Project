@@ -1,5 +1,5 @@
 # Created: 11-27-2024
-# Last updated: 11-27-2024
+# Last updated: 12-11-2024
 
 # IO Packages:
 
@@ -11,8 +11,10 @@
 
 # Internal packages:
 from ..Entity import IDLE, BATTLING, DEAD, MENU, CUTSCENE
-from Tuba_Knight_Project.TubaKnight import *
-from Tuba_Knight_Project.tubaKnight.Regions.Area import Area
+from ..Entity import Entity
+from tubaKnight import *
+from tubaKnight.Regions.Area import Area
+from PlayerData.PlayerData import PlayerData
 
 class PlayerCharacter(Entity):
     """
@@ -22,68 +24,47 @@ class PlayerCharacter(Entity):
     store (handled by the PlayerData class).
     # NOTE: By default, players are Entity ID 0.
     Players have the most actions out of all entities:
-    Group 1: Menu Actions
-        Action 1: Players can interact with the main menu
-        Action 2: Players can progress the main story
-        Action 3: Players can view their items
-        Action 4: Players can equip, unequip, and upgrade items, as well as themselves, with experience
-        Action 5: Players can alter game settings
-        Action 6: Players can save
-        Action 7: Players can quit the game
-    Group 2: Game Actions
-        Action 8: Players initiate interactions with other entities
-        Action 9: Players can start battles
-        Action 10: Players can alter the stats of other entities while in battle
-        Action 11: Players can initiate and end dialogue sequences
-        Action 12: Players can change the current Region
-    Group 3: Other
-        Action 13: Players can save and load Region data
 
     Fields:
     str nick - the nickname of the player-character, if any
     PlayerData myData - the current player's data
+    int rand - the current random value needed to level up
     """
-
     myNick = None
     myData = None
 
-    def __init__(self, myName : str, myData : PlayerData, myNick : str = None):
+    def __init__(self, myName : str, myData : PlayerData):
         super().__init__(0)
         self.name = myName
         self.myData = myData
-        self.myNick = myNick
+        self.myNick = myData.nick
+
+    def __str__(self) -> str:
+        """ Displays the nickname of the player-character, if any. """
+        if (self.myNick != ""):
+            return f"{self.__repr__()}"
+        else:
+            return f"{self.myNick}"
+
+    def __repr__(self) -> str:
+        """ Displays the name of the player-character. """
+        return f"{self.name}"
 
     def act(self):
-        """
-        The actions the player can perform are detailed above.
-        Actions 1-7 can be accessed while in the menu.
-        Action 8-12 can be accessed while in game
-        Action 13 can be accessed when moving between areas
-        (This is the only action that the user does not initiate)
-        """
+
         pass
 
-def menuActions(self):
-    """
-    From the menu, the following options can be chosen:
-    Actions 2, 3, 5, 6, and 7
-    """
-    pass
+    def getExpNeeded(self):
+        """ Gets the EXP needed to level up. """
+        return (self.myData.level * 14) + 23
 
-def viewItems(self):
-    """
-    From the item menu, the following options can be chosen:
-    Action 4
-    """
-    pass
-
-def interact(self, other : Entity):
-    """ Controls interactions between the player and another Entity. """
-    pass
-
-def attack(self):
-    """ Attacks the given entity. """
-    pass
+    def levelUp(self) -> bool:
+        """ Levels up the player. Returns True when successful. """
+        if (self.myData.experience >= self.getExpNeeded()):
+            self.myData.levelUp(self.getExpNeeded())
+            return True
+        else:
+            return False
 
 def changeRegion(self, newArea : Area):
     pass

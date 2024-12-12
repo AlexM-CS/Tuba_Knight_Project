@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-27-2024
+# Last updated: 12-11-2024
 
 # IO packages:
 
@@ -11,7 +11,7 @@
 from abc import abstractmethod
 
 # Internal packages:
-from Tuba_Knight_Project import Config
+import Config
 
 """
 Static Fields:

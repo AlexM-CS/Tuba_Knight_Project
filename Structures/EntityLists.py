@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-26-2024
+# Last updated: 12-11-2024
 
 # IO packages:
 
@@ -11,9 +11,8 @@ from argparse import ArgumentError
 # External packages:
 
 # Internal packages:
-from Tuba_Knight_Project.tubaKnight.Entities.Entity import *
-from Tuba_Knight_Project.tubaKnight.Entities.Characters.Enemies import Enemy
-from Tuba_Knight_Project.tubaKnight.Entities.Items.Items import Item
+from tubaKnight.Entities.Entity import *
+from tubaKnight.Entities.Characters.Enemies import Enemy
 
 class EntityList:
     """
@@ -62,16 +61,3 @@ class EnemyList(EntityList):
     def add(self, enemy : Enemy, index : int = None) -> bool:
         """ Adds an enemy to the end of this EnemyList. """
         return super().add(enemy, index)
-
-class ItemList(EntityList):
-    """
-    Description:
-    A list of Item objects.
-    """
-    def __init__(self, maxSize : int = None, content : list[Item] = None):
-        """ Initializes this ItemList. """
-        super().__init__(maxSize, content)
-
-    def add(self, item : Item, index : int = None) -> bool:
-        """ Adds an item to the end of this ItemList. """
-        return super().add(item, index)

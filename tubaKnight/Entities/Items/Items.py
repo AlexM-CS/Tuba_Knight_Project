@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 11-27-2024
+# Last updated: 12-11-2024
 
 # IO packages:
 
@@ -103,7 +103,7 @@ class Item(Entity):
     tags = None
     stats = None
 
-    def __init__(self, ID : int, level : int = 1, degree : int = ITEM_DEGREES["Pianissimo"], state : int = idle):
+    def __init__(self, ID : int, level : int = 1, degree : int = ITEM_DEGREES["Pianissimo"], state : int = IDLE):
         """ Instantiates this Item. """
         if (ID == 0x0000 or ID == 0x0001):
             super().__init__(ID)

@@ -144,3 +144,14 @@ as factoring in the defender's level in damage calculations.
 The damage formula used by Pokemon can be found on the website given in the Sources_and_Research
 file.
 ===================================================================================================
+12-11-2024
+Today's entry is the culmination of about a week and a half of work. Finals have kept me busy, but
+I've still periodically been messing with my code and making changes. However, my changes were
+always so minor that I never felt pushing them was warranted until I made some larger-scale
+modifications to the program.
+
+Anyway, I've gotten the menus almost entirely operational. There are still some major things I
+need to implement, the main thing being a debug mode to simulate battling, which is still my
+goal. However, displaying the menu, selecting options, and leveling up (probably) are all
+done.
+===================================================================================================
