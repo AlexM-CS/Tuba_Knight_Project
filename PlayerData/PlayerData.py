@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 12-11-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 
@@ -25,31 +25,37 @@ defaultItems = {
      3 : Item(0x0000),
      4 : Item(0x0000),
      5 : Item(0x0000),
+
      6 : Item(0x0000),
      7 : Item(0x0000),
      8 : Item(0x0000),
      9 : Item(0x0000),
     10 : Item(0x0000),
+
     11 : Item(0x0000),
     12 : Item(0x0000),
     13 : Item(0x0000),
     14 : Item(0x0000),
     15 : Item(0x0000),
+
     16 : Item(0x0000),
     17 : Item(0x0000),
     18 : Item(0x0000),
     19 : Item(0x0000),
     20 : Item(0x0000),
+
     21 : Item(0x0000),
     22 : Item(0x0000),
     23 : Item(0x0000),
     24 : Item(0x0000),
     25 : Item(0x0000),
+
     26 : Item(0x0000),
     27 : Item(0x0000),
     28 : Item(0x0000),
     29 : Item(0x0000),
     30 : Item(0x0000),
+
     31 : Item(0x0000),
     32 : Item(0x0000),
     33 : Item(0x0000),
@@ -129,15 +135,16 @@ class PlayerData:
     def levelUp(self, expNeeded : int):
         self.level += 1
         self.experience -= expNeeded
+        boosts = self.getStatUps()
 
-        self.stats.hitpoints += 1
-        self.stats.magicpoints += 1
-        self.stats.strength += 1
-        self.stats.dexterity += 1
-        self.stats.magic += 1
-        self.stats.defense += 1
-        self.stats.speed += 1
-        self.stats.critchance += 1
+        self.stats.hitpoints += boosts[0]
+        self.stats.magicpoints += boosts[1]
+        self.stats.strength += boosts[2]
+        self.stats.dexterity += boosts[3]
+        self.stats.magic += boosts[4]
+        self.stats.defense += boosts[5]
+        self.stats.speed += boosts[6]
+        self.stats.critchance += boosts[7]
 
     def getStatUps(self) -> list[int]:
         boosts = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -158,10 +165,10 @@ class PlayerData:
                 boosts[5] += 1
             if (item.stats.speed > 0):
                 boosts[6] += 1
-            if (item.stats.critchance > 0):
+            if (item.stats.crit > 0):
                 boosts[7] += 1
 
-        for stat in boosts:
-            stat += random.randrange(3, 7)
+        for i in range(0, len(boosts)):
+           boosts[i] += random.randrange(3, 7)
 
         return boosts

@@ -1,5 +1,5 @@
 # Created: 11-21-2024
-# Last updated: 12-11-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 
@@ -12,10 +12,12 @@ import maskpass
 
 # Internal packages:
 from . import Window
+from Commands import *
+from tubaKnight.Entities.Characters.PlayerCharacter import PlayerCharacter
 
 # This file keeps track of various inputs the user can perform while playing.
 
-def nextInt(text : str = "default", pre : int = None):
+def nextInt(text : str = "default", pre : int = None) -> int:
     """
     Loops until an integer is input, then returns the parsed integer.
     @param text: the Text to display
@@ -34,7 +36,7 @@ def nextInt(text : str = "default", pre : int = None):
         except ValueError:
             Window.clear()
 
-def nextStr(text : str = "default", pre : str = None):
+def nextStr(text : str = "default", pre : str = None) -> str:
     """
     Returns a parsed string
     @param text: the Text to display
@@ -47,6 +49,22 @@ def nextStr(text : str = "default", pre : str = None):
         string = pre
     Window.clear()
     return string
+
+def nextCommand(player : PlayerCharacter, text : str = "default"):
+    string = input(text + "\n")
+    Window.clear()
+    match (string):
+        case "setStat": # setStat command
+            arg1 = player
+            arg2 = nextStr("arg2 stat")
+            arg3 = nextInt("arg3 value")
+            setStat(arg1, arg2, arg3)
+            return
+        case _: # Normal output
+            try:
+                return int(string)
+            except ValueError:
+                return string
 
 def password(ask : str):
     """ Allows the user to enter a string that gets masked. """

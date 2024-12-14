@@ -179,3 +179,25 @@ TubaKnight.py:
     Added method description to save()
     Renamed play() to start()
     Implemented start()
+===================================================================================================
+12-14-2024
+Text.py:
+    Changed display() to allow for Text to sleep (idle)
+Inputs.py:
+    Declared methods: nextCommand()
+Menu.py:
+    Declared ItemMenu:
+        Declared fields: page, pageName
+        Declared methods: __init__(), __repr__(), select(), scroll()
+PlayerData.py:
+    Implemented levelUp() and getStatUps()
+Items.py:
+    Declared methods: description()
+ItemStats.py:
+    Declared methods: __str__()
+Commands.py:
+    Declared static fields: commandList
+    Declared methods: setStat()
+TubaKnight.py:
+    Added Config messages when launching the program
+    Implemented GameMenu option 5: View Items...

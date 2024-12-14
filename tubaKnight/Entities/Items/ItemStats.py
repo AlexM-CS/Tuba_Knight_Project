@@ -1,5 +1,5 @@
 # Created: 11-24-2024
-# Last updated: 11-26-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 
@@ -41,6 +41,20 @@ class ItemStats:
         self.defense = defense
         self.speed = speed
         self.crit = crit
+
+    def __str__(self):
+        """
+        String representation of the Stats object.
+        Used during View Items... in ItemMenu.
+        """
+        return (f"   Health: {self.health}\n"
+                f"   MP: {self.magicpoints}\n"
+                f"   Strength: {self.strength}\n"
+                f"   Dexterity: {self.dexterity}\n"
+                f"   Magic: {self.magic}\n"
+                f"   Defense: {self.defense}\n"
+                f"   Speed: {self.speed}\n"
+                f"   Crit Chance: {self.crit}\n")
 
     def __repr__(self):
         """

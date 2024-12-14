@@ -1,5 +1,5 @@
 # Created: 11-21-2024
-# Last updated: 12-11-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 from IO.Inputs import enter_to_continue
@@ -35,7 +35,7 @@ class Text:
         self.style = style
         self.speed = speed
 
-    def display(self, enter_prompt : bool = False, sleep : int = 0):
+    def display(self, enter_prompt : bool = False, sleep : float = 0):
         """ Displays this Text according to the contents and style. """
         if (self.speed > 0):
             startTime = time.time()

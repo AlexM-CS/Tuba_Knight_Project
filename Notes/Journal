@@ -155,3 +155,18 @@ need to implement, the main thing being a debug mode to simulate battling, which
 goal. However, displaying the menu, selecting options, and leveling up (probably) are all
 done.
 ===================================================================================================
+12-14-2024
+Over the past few days I made a bunch of progress towards getting playtesting up and running.
+Most notably, the ItemMenu now has most of its functionality finished, the last of which just
+being the ability to equip items from your inventory. However, I want to wait to add this until
+I have a bunch of different items in the game.
+
+Next up on the To-Do list is to do the settings menu. I forgot to include it when I made the
+main menu initially (because I scrapped the idea of letting the user switch the colors/styles
+of their text), but I'll add it next time I have an opportunity to get some work done, most
+likely only including the things I talked about in entry 11-26-2024.
+
+After that (which is probably going to be an ongoing task as I add items and enemies), I will
+finally begin making Areas. This is probably going to be the first huge step in the project, and
+I'm very excited to start.
+===================================================================================================

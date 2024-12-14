@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 12-11-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 
@@ -125,6 +125,9 @@ class Item(Entity):
             self.state = state
             self.tags = addTagsToItemByID(ID)
             self.stats = getStatsByID(ID, level, degree)
+
+    def description(self):
+        return "DEFAULT DESCRIPTION"
 
     def act(self):
         """

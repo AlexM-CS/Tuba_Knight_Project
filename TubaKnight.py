@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 12-11-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 from IO.Inputs import *
@@ -15,6 +15,7 @@ from Graphics.Text.Style import Style
 # External packages:
 
 # Internal packages:
+import Config
 from tubaKnight.Entities.Characters.Stats import Stats
 from tubaKnight.Entities.Items import Items
 from tubaKnight.Entities.Items.Items import *
@@ -94,7 +95,7 @@ class TubaKnight:
         except FileNotFoundError:
             Text(f"Would you like to create a new character named {self.playerName}?").display()
             answer = nextStr(f"[Y]/[N]: ").lower()
-            while (answer!= "y" and answer != "n"):
+            while (answer != "y" and answer != "n"):
                 answer = nextStr(f"[Y]/[N] : ").lower()
             if (answer == "y"):
                 self.playerData = PlayerData(f"{self.playerName}", f"None")
@@ -130,6 +131,12 @@ class TubaKnight:
         newCharacter = self.getPlayerData()
         user = PlayerCharacter(self.playerName, self.playerData)
         menu = Menu(user)
+        if (Config.debug):
+            Text(f"debug = True", Style("red", "black")).display(sleep = 0.2)
+        if (Config.commands_on):
+            Text(f"commands_on = True", Style("red", "black")).display(sleep = 0.2)
+        if (Config.show_IDs):
+            Text(f"show_IDs = True", Style("red", "black")).display(sleep = 0.2)
 
         # If the user created a new character, automatically load the main story
         pre = 0
@@ -138,6 +145,7 @@ class TubaKnight:
 
         # Main game loop
         while True:
+            Window.clear()
             # Set the Menu's options to be the Main Menu
             menu.setMenu(0)
             # Gets the user's option from the current Menu
@@ -147,7 +155,9 @@ class TubaKnight:
             match selection:
                 case 1: # The user wants to run the main game
                     menu.setMenu(1)
+
                     while True:
+                        Window.clear()
                         selection2 = menu.select(pre = pre)
                         pre = 0
 
@@ -175,7 +185,7 @@ class TubaKnight:
                                         if (success):
                                             Window.clear()
                                             Text(f"========================================\n"
-                                                 f"{before}\n"
+                                                 f"Current Level: {user.myData.level}\n\n"
                                                  f"Leveled Up!\n"
                                                  f"========================================").display(sleep=2)
 
@@ -187,10 +197,46 @@ class TubaKnight:
                                                  f"========================================").display(sleep=2)
 
                                     case 2: # Back..
-                                        break
+                                        pass
+
+                                menu.setMenu(1)
 
                             case 5: # View Items...
-                                pass
+                                itemMenu = ItemMenu(user)
+                                while True:
+                                    Window.clear()
+                                    selection3 = itemMenu.select()
+                                    # Try converting the input into an integer
+                                    # This means the user wants to view an item
+                                    try:
+                                        selection3 = int(selection3)
+                                        selection3 -= 1
+                                        if (itemMenu.page > 1):
+                                            selection3 += 6
+                                        # We should only allow the user to view valid items
+                                        maxVal = (36 if itemMenu.page == 0 else 31)
+                                        if (selection3 >= 0 and selection3 < maxVal and selection3 in itemMenu.options):
+                                            display = (f"========================================\n"
+                                                       f"{user.myData.items[selection3].__str__()}\n"
+                                                       f"{user.myData.items[selection3].description()}\n\n"
+                                                       f"Stats:\n"
+                                                       f"{user.myData.items[selection3].stats.__str__()}\n"
+                                                       f"========================================")
+                                            Text(display).display()
+                                            enter_to_continue()
+                                            continue
+
+                                    except ValueError:
+                                        selection3 = selection3.lower()
+                                        match (selection3):
+                                            case "a":  # Scroll Left
+                                                itemMenu.scroll(-1)
+
+                                            case "d":  # Scroll Right
+                                                itemMenu.scroll(1)
+
+                                            case "e":  # Exit the item menu
+                                                break
 
                             case 6: # View Character...
                                 Window.clear()
@@ -221,3 +267,7 @@ class TubaKnight:
                             Window.clear()
                             if (selection2 == 2):
                                 quit()
+
+if __name__ == "__main__":
+    tk = TubaKnight("Alex")
+    tk.start()

@@ -1,5 +1,5 @@
 # Created: 11-22-2024
-# Last updated: 12-11-2024
+# Last updated: 12-14-2024
 
 # IO packages:
 
@@ -52,7 +52,7 @@ class Stats:
     def __str__(self) -> str:
         """
         String representation of the Stats object.
-        Used during View Character... in GameMenu.
+        Used during View Character... in the Menu.
         """
         return (f"   Health: {self.hitpoints}\n"
                 f"   MP: {self.magicpoints}\n"
